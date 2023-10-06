@@ -1,52 +1,56 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>IPFS Network Buttons</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url('https://icommunity.io/wp-content/uploads/2020/08/IPFS.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .btn-ipfs {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue color for the first button */
+            border-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #28a745; /* Green color for the second button */
+            border-color: #28a745;
+        }
+        a{
+            direction: none;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Retrieve File from IPFS</h1>
-
-    <input type="text" id="cidInput" placeholder="Enter IPFS CID">
-    <button onclick="retrieveFromIPFS()">Retrieve</button>
-
-    <p>Status: <span id="retrieveStatus">File fetched from IPFS!</span></p>
-    <div id="fileContent">Hello World
+    <div class="button-container">
+        <button class="btn btn-primary btn-ipfs" ><a href="./Upload.html" target="_blank">Upload</a></button>
+        <button class="btn btn-secondary btn-ipfs"><a href="./Retieve.html" target="_blank">Retrieve</a></button>
+      
     </div>
 
-    <script>
-        async function retrieveFromIPFS() {
-            const cidInput = document.getElementById('cidInput');
-            const retrieveStatus = document.getElementById('retrieveStatus');
-            const fileContent = document.getElementById('fileContent');
-            const cid = cidInput.value.trim();
-
-            if (!cid) {
-                retrieveStatus.textContent = 'No IPFS CID provided';
-                return;
-            }
-
-            try {
-                retrieveStatus.textContent = 'Retrieving...';
-
-                const response = await fetch(`https://ipfs.io/ipfs/${cid}`);
-
-                if (response.ok) {
-                    const data = await response.text();
-                    fileContent.textContent = data;
-                    retrieveStatus.textContent = 'File fetched from IPFS!';
-                } else {
-                    retrieveStatus.textContent = 'Error fetching from IPFS';
-                }
-            } catch (error) {
-                console.error('Error fetching from IPFS:', error);
-                retrieveStatus.textContent = 'Error fetching from IPFS';
-            }
-        }
-    </script>
-
+    <!-- Add Bootstrap JS and jQuery scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
