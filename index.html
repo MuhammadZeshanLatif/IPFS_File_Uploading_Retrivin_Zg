@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPFS Network Buttons</title>
+    <title>IPFS Travel</title>
     <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -14,6 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
 
         .button-container {
@@ -36,16 +37,23 @@
             background-color: #28a745; /* Green color for the second button */
             border-color: #28a745;
         }
-        a{
-            direction: none;
+
+        .btn-ipfs a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #fff;
         }
     </style>
 </head>
 <body>
+    <h1>IPFS Travel</h1>
     <div class="button-container">
-        <button class="btn btn-primary btn-ipfs" ><a href="./Upload.html" target="_blank">Upload</a></button>
-        <button class="btn btn-secondary btn-ipfs"><a href="./Retieve.html" target="_blank">Retrieve</a></button>
-      
+        <button class="btn btn-primary btn-ipfs"><a href="./Upload.html" target="_blank">Upload</a></button>
+        <button class="btn btn-secondary btn-ipfs"><a href="./Retrieve.html" target="_blank">Retrieve</a></button>
     </div>
 
     <!-- Add Bootstrap JS and jQuery scripts -->
