@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Retrieve File from IPFS Network</title>
 </head>
 
 <body>
@@ -31,9 +32,34 @@
                 retrieveStatus.textContent = 'Retrieving...';
 
                 const response = await fetch(`https://ipfs.io/ipfs/${cid}`);
-                //console.log(await response.text());
-                const data = await response.text();
-                fileContent.textContent = data;
+                const contentType = response.headers.get('content-type');
+                console.log(await response.text());
+                if (contentType.includes('pdf')) {
+                    // Display PDF
+                    const pdfEmbed = document.createElement('embed');
+                    pdfEmbed.src = `https://ipfs.io/ipfs/${cid}`;
+                    pdfEmbed.type = 'application/pdf';
+                    pdfEmbed.width = '100%';
+                    pdfEmbed.height = '500px';
+                    fileContent.innerHTML = '';
+                    fileContent.appendChild(pdfEmbed);
+                    retrieveStatus.textContent = '';
+                } else if (contentType.includes('image')) {
+                    // Display Image
+                    const image = document.createElement('img');
+                    image.src = `https://ipfs.io/ipfs/${cid}`;
+                    image.alt = 'Image from IPFS';
+                    fileContent.innerHTML = '';
+                    fileContent.appendChild(image);
+                    retrieveStatus.textContent = '';
+                } else {
+                    // Display Text
+                    const data = await response.text();
+                    const textContent = document.createElement('fileContent');
+                    textContent.textContent = data;
+                    fileContent.innerHTML = '';
+                    fileContent.appendChild(textContent);
+                }
                 
             } catch (error) {
                 console.error('Error fetching from IPFS:', error);
