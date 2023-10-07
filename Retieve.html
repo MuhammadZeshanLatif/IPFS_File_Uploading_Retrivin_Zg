@@ -7,14 +7,14 @@
 </head>
 
 <body>
-    <h1>Retrieve File from IPFS Network</h1>
-
+    <h1>Retrieve File from IPFS</h1>
+    
     <input type="text" id="cidInput" placeholder="Enter IPFS CID">
     <button onclick="retrieveFromIPFS()">Retrieve</button>
 
     <p>Status: <span id="retrieveStatus">File fetched from IPFS!</span></p>
     <div id="fileContent">Hello World
-    </div>
+</div>
 
     <script>
         async function retrieveFromIPFS() {
@@ -22,7 +22,7 @@
             const retrieveStatus = document.getElementById('retrieveStatus');
             const fileContent = document.getElementById('fileContent');
             const cid = cidInput.value.trim();
-
+            
             if (!cid) {
                 retrieveStatus.textContent = 'No IPFS CID provided';
                 return;
