@@ -7,14 +7,14 @@
 </head>
 
 <body>
-    <h1>Retrieve File from IPFS</h1>
-    
-    <input type="text" id="cidInput" placeholder="Enter IPFS CID">
+    <h1>Retrieve File from IPFS Network</h1>
+
+    <input type="text" value="bafkreie2g6bxmhszsj4jswukzqj2fgsyynt4wgsxddt4ekg55isoorobwy" id="cidInput" placeholder="Enter IPFS CID">
     <button onclick="retrieveFromIPFS()">Retrieve</button>
 
     <p>Status: <span id="retrieveStatus">File fetched from IPFS!</span></p>
-    <div id="fileContent">Hello World
-</div>
+    <div id="fileContent">
+    </div>
 
     <script>
         async function retrieveFromIPFS() {
@@ -22,24 +22,19 @@
             const retrieveStatus = document.getElementById('retrieveStatus');
             const fileContent = document.getElementById('fileContent');
             const cid = cidInput.value.trim();
-            
+
             if (!cid) {
                 retrieveStatus.textContent = 'No IPFS CID provided';
                 return;
             }
-
             try {
                 retrieveStatus.textContent = 'Retrieving...';
 
                 const response = await fetch(`https://ipfs.io/ipfs/${cid}`);
-
-                if (response.ok) {
-                    const data = await response.text();
-                    fileContent.textContent = data;
-                    retrieveStatus.textContent = 'File fetched from IPFS!';
-                } else {
-                    retrieveStatus.textContent = 'Error fetching from IPFS';
-                }
+                //console.log(await response.text());
+                const data = await response.text();
+                fileContent.textContent = data;
+                
             } catch (error) {
                 console.error('Error fetching from IPFS:', error);
                 retrieveStatus.textContent = 'Error fetching from IPFS';
